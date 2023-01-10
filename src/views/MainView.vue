@@ -1,11 +1,17 @@
 <template>
   <div>
-    <TabMenu v-if="desktopFlag" :model="items" @tab-change="tabChange($event)" class="tab-menu-desktop"/>
-    <Accordion v-else>
-      <AccordionTab header="Меню">
-        <TabMenu :model="items" @tab-change="tabChange($event)" class="tab-menu-mobile"/>
-      </AccordionTab>
-    </Accordion>
+    <div class="menu">
+      <TabMenu v-if="desktopFlag" :model="items" @tab-change="tabChange($event)" class="tab-menu-desktop"/>
+      <Accordion v-else>
+        <AccordionTab header="Меню">
+          <TabMenu :model="items" @tab-change="tabChange($event)" class="tab-menu-mobile"/>
+        </AccordionTab>
+      </Accordion>
+    </div>
+    <div class="content">
+      <CompanyView id="id-company"></CompanyView>
+      <ServicesView id="id-services"></ServicesView>
+    </div>
   </div>
 </template>
 
@@ -13,20 +19,24 @@
 import TabMenu, { TabMenuChangeEvent } from 'primevue/tabmenu';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import CompanyView from './CompanyView.vue';
+import ServicesView from './ServicesView.vue';
 
 export default {
   name: 'MainView',
   components: {
     TabMenu,
     Accordion,
-    AccordionTab
+    AccordionTab,
+    CompanyView,
+    ServicesView
   },
   data() {
     return {
       items: [
-        {label: 'Компания', icon: 'pi pi-fw pi-home'},
+        {label: 'Компания', icon: 'pi pi-fw pi-home', href: 'id-company'},
         {label: 'Проекты', icon: 'pi pi-fw pi-database'},
-        {label: 'Услуги', icon: 'pi pi-fw pi-slack'},
+        {label: 'Услуги', icon: 'pi pi-fw pi-slack', href: 'id-services'},
         {label: 'Калькулятор', icon: 'pi pi-fw pi-calculator'},
         {label: 'Производство', icon: 'pi pi-fw pi-server'},
         {label: 'Команда', icon: 'pi pi-fw pi-users'},
@@ -38,13 +48,24 @@ export default {
   },
   created() {
     window.addEventListener('resize', this.resize);
+    this.desktopFlag = window.innerWidth > this.desktopSize;
   },
   destroyed() {
     window.removeEventListener('resize', this.resize);
   },
   methods: {
     tabChange: function(event: TabMenuChangeEvent) {
-      console.log(event)
+      const id = '#'.concat(this.items[event.index].href);
+      const scrollIntoViewWithOffset = (selector, offset) => {
+        window.scrollTo({
+          behavior: 'smooth',
+          top:
+            document.querySelector(selector).getBoundingClientRect().top -
+            document.body.getBoundingClientRect().top -
+            offset,
+        })
+      }
+      scrollIntoViewWithOffset(id, 60);
     },
     resize: function(event: UIEvent) {
       const target = event.target;
@@ -73,5 +94,15 @@ export default {
   
   :deep(.p-accordion-header-link) {
     padding: 0.75rem 1rem !important;
+  }
+
+  .menu {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .content {
+    
   }
 </style>
