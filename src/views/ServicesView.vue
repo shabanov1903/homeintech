@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div class="name">Услуги</div>
+    <div class="name-of-section">Услуги</div>
     <div class="services-container">
       <Card v-for="card in cards">
         <template #header>
@@ -76,23 +76,20 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
-  .name {
-    font-size: 3em;
-    font-weight: bold;
-  }
 
   .services-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+    gap: 40px;
     @include large-desktop-only {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      justify-items: center;
     }
     @include mobile-only {
       grid-template-columns: repeat(auto-fill, 170px);
     }
 
-    gap: 40px;
-    justify-content: center;
     margin: 20px;
   }
 

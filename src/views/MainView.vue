@@ -11,6 +11,7 @@
     <div class="content">
       <CompanyView id="id-company"></CompanyView>
       <ServicesView id="id-services"></ServicesView>
+      <CalculatorView id="id-calculator"></CalculatorView>
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import CompanyView from './CompanyView.vue';
 import ServicesView from './ServicesView.vue';
+import CalculatorView from './CalculatorView.vue';
 
 export default {
   name: 'MainView',
@@ -29,7 +31,8 @@ export default {
     Accordion,
     AccordionTab,
     CompanyView,
-    ServicesView
+    ServicesView,
+    CalculatorView
   },
   data() {
     return {
@@ -37,7 +40,7 @@ export default {
         {label: 'Компания', icon: 'pi pi-fw pi-home', href: 'id-company'},
         {label: 'Проекты', icon: 'pi pi-fw pi-database'},
         {label: 'Услуги', icon: 'pi pi-fw pi-slack', href: 'id-services'},
-        {label: 'Калькулятор', icon: 'pi pi-fw pi-calculator'},
+        {label: 'Калькулятор', icon: 'pi pi-fw pi-calculator', href: 'id-calculator'},
         {label: 'Производство', icon: 'pi pi-fw pi-server'},
         {label: 'Команда', icon: 'pi pi-fw pi-users'},
         {label: 'Контакты', icon: 'pi pi-fw pi-phone'}
@@ -100,9 +103,5 @@ export default {
     position: sticky;
     top: 0;
     z-index: 1;
-  }
-
-  .content {
-    
   }
 </style>
