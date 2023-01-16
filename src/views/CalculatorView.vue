@@ -14,9 +14,8 @@
       </div>
     </div>
 
-
     <div class="full-cost-container">
-      Итого: <span>{{getFullCost}}</span>
+      Итого: <span>{{getFullCost}}</span> руб.
     </div>
   </div>
 </template>
@@ -70,6 +69,14 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
+.main-container {
+  background-image: url('@/assets/images/bg_calculator.png');
+  background-size: 100%;
+}
+.name-of-section {
+  color: white;
+}
+
 .inputgroup-container {
   display: flex;
   flex-flow: column nowrap;
@@ -79,11 +86,13 @@ export default {
 .full-cost-container {
   font-size: 2em;
   margin-top: 15px;
+  color: white;
 }
 
 .input-name {
   position: absolute;
   top: -25px;
+  color: white;
 }
 
 .p-inputgroup {

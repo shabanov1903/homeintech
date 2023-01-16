@@ -11,7 +11,11 @@
     <div class="content">
       <CompanyView id="id-company"></CompanyView>
       <ServicesView id="id-services"></ServicesView>
+      <TechnologiesView id="id-technologies"></TechnologiesView>
       <CalculatorView id="id-calculator"></CalculatorView>
+      <ProductionView id="id-production"></ProductionView>
+      <CommandView id="id-command"></CommandView>
+      <ContactsView id="id-contacts"></ContactsView>
     </div>
   </div>
 </template>
@@ -22,7 +26,11 @@ import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import CompanyView from './CompanyView.vue';
 import ServicesView from './ServicesView.vue';
+import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
+import ProductionView from './ProductionView.vue';
+import CommandView from './CommandView.vue';
+import ContactsView from './ContactsView.vue';
 
 export default {
   name: 'MainView',
@@ -31,19 +39,23 @@ export default {
     Accordion,
     AccordionTab,
     CompanyView,
+    TechnologiesView,
     ServicesView,
-    CalculatorView
+    CalculatorView,
+    ProductionView,
+    CommandView,
+    ContactsView,
   },
   data() {
     return {
       items: [
         {label: 'Компания', icon: 'pi pi-fw pi-home', href: 'id-company'},
-        {label: 'Проекты', icon: 'pi pi-fw pi-database'},
-        {label: 'Услуги', icon: 'pi pi-fw pi-slack', href: 'id-services'},
+        {label: 'Услуги', icon: 'pi pi-fw pi-shopping-bag', href: 'id-services'},
+        {label: 'Технологии', icon: 'pi pi-fw pi-database', href: 'id-technologies'},
         {label: 'Калькулятор', icon: 'pi pi-fw pi-calculator', href: 'id-calculator'},
-        {label: 'Производство', icon: 'pi pi-fw pi-server'},
-        {label: 'Команда', icon: 'pi pi-fw pi-users'},
-        {label: 'Контакты', icon: 'pi pi-fw pi-phone'}
+        {label: 'Производство', icon: 'pi pi-fw pi-server', href: 'id-production'},
+        {label: 'Команда', icon: 'pi pi-fw pi-users', href: 'id-command'},
+        {label: 'Контакты', icon: 'pi pi-fw pi-phone', href: 'id-contacts'}
       ],
       desktopSize: 768,
       desktopFlag: false
@@ -63,12 +75,12 @@ export default {
         window.scrollTo({
           behavior: 'smooth',
           top:
-            document.querySelector(selector).getBoundingClientRect().top -
-            document.body.getBoundingClientRect().top -
+            document.querySelector(selector)?.getBoundingClientRect().top -
+            document.body?.getBoundingClientRect().top -
             offset,
         })
       }
-      scrollIntoViewWithOffset(id, 60);
+      scrollIntoViewWithOffset(id, 49);
     },
     resize: function(event: UIEvent) {
       const target = event.target;

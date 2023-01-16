@@ -12,9 +12,9 @@
       <div class="name-of-section">Как мы работаем?</div>
       <div class="stages">
         <div class="stage-of-work" v-for="stage in stages">
-          <div class="stage-of-work-stage">{{stage.stage}}</div>
-          <div class="stage-of-work-name">{{stage.name}}</div>
-          <div class="stage-of-work-text">{{stage.text}}</div>
+          <div class="stage-stage">{{stage.stage}}</div>
+          <div class="stage-name">{{stage.name}}</div>
+          <div class="stage-text">{{stage.text}}</div>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
 <script lang="ts">
 
 export default {
-  name: 'CompanyView',
+  name: 'TechnologiesView',
   data() {
     return {
       stages: [
@@ -108,28 +108,28 @@ export default {
     flex-flow: row wrap;
     justify-content: space-around;
     margin: 25px;
+  }
 
-    .stage-of-work {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 300px;
+  .stage-of-work {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+  }
+  .stage-stage {
+    background-color: var(--bluegray-300);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 
-      &-stage {
-        background-color: var(--bluegray-300);
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        @include flex-centering;
-      }
-      &-name {
-        font-weight: bold;
-        text-align: start;
-        margin: 15px 0px;
-      }
-      &-text {
-        text-align: start;
-      }
-    }
+    @include flex-centering;
+  }
+  .stage-name {
+    font-weight: bold;
+    text-align: start;
+    margin: 15px 0px;
+  }
+  .stage-text {
+    text-align: start;
   }
 </style>

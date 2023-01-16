@@ -77,7 +77,15 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
-  .services-container {
+.main-container {
+  background-image: url('@/assets/images/bg_services.png');
+  background-size: 100%;
+}
+.name-of-section {
+  color: var(--grey-600)
+}
+
+.services-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
     justify-content: center;

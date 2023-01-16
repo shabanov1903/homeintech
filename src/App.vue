@@ -15,6 +15,6 @@
 }
 
 body {
-  margin: 0px 8px;
+  margin: 0px 0px;
 }
 </style>
