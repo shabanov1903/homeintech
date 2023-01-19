@@ -9,7 +9,7 @@
       <img src="@/assets/images/smart_home.png" alt="Engineer.png">
     </div>
     <div class="main-container">
-      <div class="name-of-section">Как мы работаем?</div>
+      <div class="name-of-section" style="opacity: 1">Как мы работаем?</div>
       <div class="stages">
         <div class="stage-of-work" v-for="stage in stages">
           <div class="stage-of-work-stage">{{stage.stage}}</div>

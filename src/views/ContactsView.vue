@@ -5,7 +5,7 @@
       <div class="contacts-container">
         <div class="our-contacts">
           <p>Почта</p>
-          <p>info@homeuntech.ru</p>
+          <p>info@homeintech.ru</p>
           <p>Телефоны</p>
           <p>+7 (996) 771-49-03</p>
           <p>+7 (996) 771-49-04</p>

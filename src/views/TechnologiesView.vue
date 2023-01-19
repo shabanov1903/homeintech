@@ -76,8 +76,11 @@ export default {
 @import '@/assets/sass/mixins.scss';
 
 .background-section {
-  background: linear-gradient(var(--bluegray-50), var(--bluegray-600));
-  padding: 10px;
+  background-image: url('@/assets/images/bg_technologies.png');
+  background-size: 100%;
+}
+.name-of-section {
+  color: black;
 }
 
 .content-container {
@@ -95,7 +98,7 @@ export default {
     margin: 20px;
     font-size: 1.75em;
     width: 80%;
-    color: var(--blue-900);
+    color: black;
   }
 }
 
