@@ -85,7 +85,10 @@ export default {
 
 .full-cost-container {
   font-size: 2em;
-  margin-top: 15px;
+  margin: {
+    top: 20px;
+    bottom: 30px;
+  }
   color: white;
 }
 

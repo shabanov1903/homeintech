@@ -14,10 +14,14 @@
       <TechnologiesView id="id-technologies"></TechnologiesView>
       <CalculatorView id="id-calculator"></CalculatorView>
       <ProductionView id="id-production"></ProductionView>
-      <CommandView id="id-command"></CommandView>
       <ContactsView id="id-contacts"></ContactsView>
     </div>
   </div>
+  <footer>
+    <div>
+      <p>Сайт разработал: <a href="https://github.com/shabanov1903" target="_blank">Danil Shabanov (shabanov1903@gmail.com)</a></p>
+    </div>
+  </footer>
 </template>
 
 <script lang="ts">
@@ -29,7 +33,6 @@ import ServicesView from './ServicesView.vue';
 import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
 import ProductionView from './ProductionView.vue';
-import CommandView from './CommandView.vue';
 import ContactsView from './ContactsView.vue';
 
 export default {
@@ -43,7 +46,6 @@ export default {
     ServicesView,
     CalculatorView,
     ProductionView,
-    CommandView,
     ContactsView,
   },
   data() {
@@ -54,7 +56,6 @@ export default {
         {label: 'Технологии', icon: 'pi pi-fw pi-database', href: 'id-technologies'},
         {label: 'Калькулятор', icon: 'pi pi-fw pi-calculator', href: 'id-calculator'},
         {label: 'Производство', icon: 'pi pi-fw pi-server', href: 'id-production'},
-        {label: 'Команда', icon: 'pi pi-fw pi-users', href: 'id-command'},
         {label: 'Контакты', icon: 'pi pi-fw pi-phone', href: 'id-contacts'}
       ],
       desktopSize: 768,
@@ -80,7 +81,7 @@ export default {
             offset,
         })
       }
-      scrollIntoViewWithOffset(id, 49);
+      scrollIntoViewWithOffset(id, 48);
     },
     resize: function(event: UIEvent) {
       const target = event.target;
@@ -115,5 +116,21 @@ export default {
     position: sticky;
     top: 0;
     z-index: 1;
+  }
+
+  footer {
+    background-color: var(--bluegray-900);
+    div {
+      text-align: right;
+      font-size: 0.75em;
+      padding: 4px;
+      p {
+        margin: 2px;
+        color: white;
+        a {
+          color: white;
+        }
+      }
+    }
   }
 </style>
