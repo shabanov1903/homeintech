@@ -1,18 +1,35 @@
 <template>
-  <div class="background-section">
-    <div class="main-container content-container">
-      <div class="name-of-section">Наши технологии</div>
+  <div>
+    <div class="background-section">
+      <div class="main-container content-container">
+        <div class="name-of-section">Наши технологии</div>
+        <div>
+          <Carousel :value="technologies" :numVisible="1" :numScroll="1" orientation="vertical" :circular="true" :autoplayInterval="5000">
+            <template #item="slotProps">
+              <div class="carousel-container">
+                <a :href="slotProps.data.link" target="_blank">
+                  <img :src="slotProps.data.url" :alt="slotProps.data.url" />
+                </a>
+                <div class="carousel-container-text">{{slotProps.data.text}}</div>
+              </div>
+            </template>
+          </Carousel>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner-container">
+      <div class="banner-container-item">
+        <div v-for="argument in arguments">
+          <div><i style="font-size: 2em" :class="argument.class"></i></div>
+          <div>
+            <p>{{argument.name}}</p>
+            <p>{{argument.text}}</p>
+          </div>
+        </div>
+      </div>
       <div>
-        <Carousel :value="technologies" :numVisible="1" :numScroll="1" orientation="vertical" :circular="true" :autoplayInterval="5000">
-          <template #item="slotProps">
-            <div class="carousel-container">
-              <a :href="slotProps.data.link" target="_blank">
-                <img :src="slotProps.data.url" :alt="slotProps.data.url" />
-              </a>
-              <div class="carousel-container-text">{{slotProps.data.text}}</div>
-            </div>
-          </template>
-        </Carousel>
+        <img src="@/assets/images/tech_interier.png" alt="Interier.png">
       </div>
     </div>
   </div>
@@ -66,6 +83,23 @@ export default {
           link: 'https://wirenboard.com/',
           url: require('@/assets/images/tech_wirenboard.png')
         },
+      ],
+      arguments: [
+        {
+          name: "Выход на новый уровень комфорта",
+          text: "Вы поразитесь как увлекательно и просто, создавать и менять атмосферу в доме",
+          class: 'pi pi-thumbs-up'
+        },
+        {
+          name: "Умный дом экономит Ваши средства",
+          text: "Обеспечит снижение затрат на энергопотребление за счет эффективной настройки работы всех систем",
+          class: 'pi pi-wallet'
+        },
+        {
+          name: "Обеспечит защиту и безопасность жилья",
+          text: "Вы будете знать обо всём, что в нём происходит, даже находясь в другом городе",
+          class: 'pi pi-lock'
+        }
       ]
     }
   }
@@ -108,10 +142,41 @@ export default {
 
 img {
   width: 80vw;
-
-
   display: block;
   border-radius: 5px;
   filter: drop-shadow(6px 4px 3px var(--gray-500));
+}
+
+.banner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 25px;
+
+  img {
+    width: 80%;
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35%;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      div:last-child {
+        display: unset;
+        text-align: start;
+        padding: 25px;
+
+        p:first-child {
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -70,7 +70,7 @@ export default {
 @import '@/assets/sass/mixins.scss';
 
 .main-container {
-  background-image: linear-gradient(var(--bluegray-50), var(--bluegray-400));
+  background-color: var(--bluegray-50);
 }
 
 .production-container {

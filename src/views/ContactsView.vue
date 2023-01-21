@@ -55,7 +55,8 @@ export default {
 @import '@/assets/sass/mixins.scss';
 
 .background-section {
-  background-color: #1e2d40;
+  background-image: url('@/assets/images/bg_contacts.png');
+  background-size: 100%;
 }
 .name-of-section {
   color: white;
@@ -80,7 +81,7 @@ export default {
     }
 
     .button {
-      margin: 15px 0px;
+      margin: 20px 0px;
     }
   }
 }
@@ -88,5 +89,11 @@ export default {
 :deep(.p-inputtext) {
   background: var(--bluegray-200);
   width: 75%;
+}
+
+:deep(.p-button) {
+  background: var(--bluegray-700);
+  width: 50%;
+  align-self: flex-end;
 }
 </style>

@@ -16,6 +16,7 @@
       <ProductionView id="id-production"></ProductionView>
       <ContactsView id="id-contacts"></ContactsView>
     </div>
+    <PhoneBanner></PhoneBanner>
   </div>
   <footer>
     <div>
@@ -34,6 +35,7 @@ import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
 import ProductionView from './ProductionView.vue';
 import ContactsView from './ContactsView.vue';
+import PhoneBanner from '../components/PhoneBanner.vue';
 
 export default {
   name: 'MainView',
@@ -47,6 +49,7 @@ export default {
     CalculatorView,
     ProductionView,
     ContactsView,
+    PhoneBanner
   },
   data() {
     return {
@@ -110,6 +113,11 @@ export default {
   
   :deep(.p-accordion-header-link) {
     padding: 0.75rem 1rem !important;
+  }
+  
+  :deep(.p-menuitem-link) {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
   }
 
   .menu {

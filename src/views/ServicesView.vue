@@ -1,18 +1,43 @@
 <template>
-  <div class="main-container">
-    <div class="name-of-section">Услуги</div>
-    <div class="services-container">
-      <Card v-for="card in cards">
-        <template #header>
-            <img :alt="card.url" :src="card.url">
-        </template>
-        <template #title>
-            {{ card.name }}
-        </template>
-        <template #content>
-            {{ card.text }}
-        </template>
-      </Card>
+  <div>
+    <div class="main-container">
+      <div class="name-of-section">Услуги</div>
+      <div class="services-container">
+        <Card v-for="card in cards">
+          <template #header>
+              <img :alt="card.url" :src="card.url">
+          </template>
+          <template #title>
+              {{ card.name }}
+          </template>
+          <template #content>
+              {{ card.text }}
+          </template>
+        </Card>
+      </div>
+    </div>
+    <div class="phone-container">
+      <div class="phone-container-left">
+        <div v-for="titul in phoneLeft">
+          <div>
+            <p>{{titul.name}}</p>
+            <p>{{titul.text}}</p>
+          </div>
+          <div><i style="font-size: 2em" :class="titul.class"></i></div>
+        </div>
+      </div>
+      <div>
+        <img src="@/assets/images/serv_mobile.svg" alt="Engineer.png">
+      </div>
+      <div class="phone-container-right">
+        <div v-for="titul in phoneRight">
+          <div><i style="font-size: 2em" :class="titul.class"></i></div>
+          <div>
+            <p>{{titul.name}}</p>
+            <p>{{titul.text}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +93,40 @@ export default {
           name: 'Расчеты',
           text: 'Наши специалисты готовы сделать коммерческое предложение прямо сейчас'
         },
+      ],
+      phoneLeft: [
+        {
+          name: "Управление освещением",
+          text: "Настройте особый свет на все случаи жизни. Чтобы каждый день был ярким",
+          class: 'pi pi-sun'
+        },
+        {
+          name: "Шторы/жалюзи с электроприводом",
+          text: "Закрытие и открытие одним нажатием клавиши или с применением гибких сценариев",
+          class: 'pi pi-sort-amount-up-alt'
+        },
+        {
+          name: "Видеонаблюдение",
+          text: "Умные камеры позволят Вам понять, кто звонит в дверь, когда Вас нет дома",
+          class: 'pi pi-video'
+        }
+      ],
+      phoneRight: [
+        {
+          name: "Настройка микроклимата",
+          text: "Обеспечение рациональной и комфортной работы всей системы климат-контроля",
+          class: 'pi pi-tablet'
+        },
+        {
+          name: "Охранно-пожарная сигнализация",
+          text: "Получайте моментальные оповещения в случае взлома, пожара или протечки",
+          class: 'pi pi-shield'
+        },
+        {
+          name: "Мультимедиа",
+          text: "Управляйте музыкой и кино с любых носителей в каждой точке в дома",
+          class: 'pi pi-volume-up'
+        }
       ]
     }
   }
@@ -109,8 +168,14 @@ export default {
       height: 280px;
     }
 
+    cursor: pointer;
+
     background-color: var(--gray-300);
     box-shadow: 5px 1px 15px var(--gray-500);
+
+    &:hover {
+      background-color: var(--bluegray-300);
+    }
   }
   
   :deep(.p-card-title) {
@@ -126,4 +191,53 @@ export default {
     }
     font-family: "Montserrat", sans-serif;
   }
+
+.phone-container {
+  @include flex-centering;
+  flex-direction: row;
+  padding: 25px;
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      text-align: right;
+      padding: 10px;
+
+      div:first-child {
+        display: unset;
+
+        p:first-child {
+          font-weight: bold;
+          margin: unset;
+        }
+      }
+    }
+  }
+  &-right {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      text-align: left;
+      padding: 10px;
+
+      div:last-child {
+        display: unset;
+
+        p:first-child {
+          font-weight: bold;
+          margin: unset;
+        }
+      }
+    }
+  }
+}
 </style>
