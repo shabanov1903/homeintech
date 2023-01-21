@@ -22,8 +22,14 @@
             <p>Почта</p>
             <InputText v-model="mail" />
           </div>
+          <div>
+            <p>Телефон</p>
+            <InputText v-model="phone" />
+          </div>
           <div class="button">
-            <Button label="Отправить" />
+            <Button label="Отправить" @click="sendData" />
+            <i v-if="displayOkSend" class="pi pi-check-circle"></i>
+            <span v-if="displayOkSend">отправлено</span>
           </div>
         </div>
       </div>
@@ -45,7 +51,16 @@ export default {
   data() {
     return {
       name: '',
-      mail: ''
+      mail: '',
+      phone: '',
+      displayOkSend: false
+    }
+  },
+  methods: {
+    sendData: function() {
+
+      this.displayOkSend = true;
+      setTimeout(() => this.displayOkSend = false, 2000);
     }
   }
 }
@@ -82,6 +97,18 @@ export default {
 
     .button {
       margin: 20px 0px;
+      display: flex;
+      align-items: center;
+
+      i {
+        color: green;
+        font-size: 1.6em;
+        padding: 0px 10px 0px 20px;
+      }
+      span {
+        color: green;
+        font-size: 0.8em;
+      }
     }
   }
 }
