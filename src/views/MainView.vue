@@ -16,7 +16,7 @@
       <ProductionView id="id-production"></ProductionView>
       <ContactsView id="id-contacts"></ContactsView>
     </div>
-    <PhoneBanner></PhoneBanner>
+    <PhoneButton></PhoneButton>
   </div>
   <footer>
     <div>
@@ -35,7 +35,7 @@ import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
 import ProductionView from './ProductionView.vue';
 import ContactsView from './ContactsView.vue';
-import PhoneBanner from '../components/PhoneBanner.vue';
+import PhoneButton from '../components/PhoneButton.vue';
 
 export default {
   name: 'MainView',
@@ -49,7 +49,7 @@ export default {
     CalculatorView,
     ProductionView,
     ContactsView,
-    PhoneBanner
+    PhoneButton
   },
   data() {
     return {
