@@ -41,12 +41,18 @@
 import * as _is from "../../node_modules/is_js";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import { Timestamp } from "firebase/firestore/lite";
 
 export default {
   name: 'ContactsView',
   components: {
     InputText,
     Button
+  },
+  inject: {
+    db: {
+      from: 'DB'
+    }
   },
   data() {
     return {
@@ -57,10 +63,20 @@ export default {
     }
   },
   methods: {
-    sendData: function() {
+    sendData: async function() {
 
       this.displayOkSend = true;
       setTimeout(() => this.displayOkSend = false, 2000);
+
+      const user = {
+        Name: this.name,
+        Mail: this.mail,
+        Phone: this.phone,
+        Date: Timestamp.fromDate(new Date()),
+        IsChecked: false
+      }
+
+      await this.db.addUser(user);
     }
   }
 }
@@ -102,7 +118,7 @@ export default {
 
       i {
         color: green;
-        font-size: 1.6em;
+        font-size: 1.4em;
         padding: 0px 10px 0px 20px;
       }
       span {

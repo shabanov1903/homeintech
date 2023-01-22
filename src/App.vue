@@ -2,6 +2,17 @@
   <router-view />
 </template>
 
+<script lang="ts">import { DB } from './services/firebase/firebase.db';
+
+export default {
+  provide() {
+    return {
+      DB: new DB()
+    }
+  }
+}
+</script>
+
 <style lang="scss">
 @import "primevue/resources/primevue.min.css";
 @import "primevue/resources/themes/md-light-indigo/theme.css";

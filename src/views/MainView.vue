@@ -84,7 +84,7 @@ export default {
             offset,
         })
       }
-      scrollIntoViewWithOffset(id, 48);
+      scrollIntoViewWithOffset(id, 49);
     },
     resize: function(event: UIEvent) {
       const target = event.target;

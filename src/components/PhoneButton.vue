@@ -23,8 +23,8 @@
       fontSize: '1.2em'
     }">
     <p>Уважаемый(-ая), {{ data.name }}!</p>
-    <p>Ваши данные успешно отправлены на наш сервер!</p>
-    <p>С Вами свяжутся в ближайшее время!</p>
+    <p>Ваши данные успешно отправлены на наш сервер</p>
+    <p>С Вами свяжутся в ближайшее время</p>
   </Dialog>
   <div class="wrapper">
     <div class="wrapper-item" :style="buttonPosition">
@@ -38,6 +38,7 @@ import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import PhoneBanner from './PhoneBanner.vue';
 import TWEEN from '@tweenjs/tween.js';
+import { Timestamp } from "firebase/firestore/lite";
 
 export default {
   name: 'PhoneButton',
@@ -48,6 +49,11 @@ export default {
   },
   props: {
     text: String
+  },
+  inject: {
+    db: {
+      from: 'DB'
+    }
   },
   data() {
     return {
@@ -68,7 +74,7 @@ export default {
       this.displayDialog = true;
     },
     setButtonPosition: function(value) {
-      const element = this.$refs['pi-button'].$el;
+      const element = this.$refs['pi-button']?.$el;
       element.classList.toggle('button-blink');
 
       function animate(time) {
@@ -90,9 +96,19 @@ export default {
       const dialog = this.$refs[dialogName];
       dialog.close();
     },
-    sendData(data) {
+    sendData: async function(data) {
       this.data = data;
       let {name, mail, phone} = data;
+
+      const user = {
+        Name: name,
+        Mail: mail,
+        Phone: phone,
+        Date: Timestamp.fromDate(new Date()),
+        IsChecked: false
+      }
+
+      await this.db.addUser(user);
 
       this.closeDialog('pi-dialog');
       this.displayMessage = true;
