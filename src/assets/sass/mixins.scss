@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "colors";
+
 @mixin large-desktop-only {
     @media (min-width: 1200px) {
         @content;
@@ -20,4 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@function get-color($color) {
+    @return map.get(colors.$colors-map, $color);
 }

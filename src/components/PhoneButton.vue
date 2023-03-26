@@ -146,7 +146,6 @@ export default {
 }
 
 .p-button {
-  box-shadow: 10px 10px 15px var(--bluegray-800);
   background-color: var(--bluegray-800);
 }
 

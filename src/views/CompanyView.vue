@@ -1,54 +1,63 @@
 <template>
-  <div class="background-section">
-    <div class="main-container content-container">
-      <div class="text">
-        <p>HomeIntech</p>
-        <p>HomeIntech - это инжиниринговая компания, предлагающая комплекс услуг полного цикла по проектированию, поставке, монтажу, пуско-наладке, автоматизации и диспетчеризации внутридомовых инженерных сетей зданий, включая системы электроснабжения, вентиляции, кондиционирования, пожарной сигнализации,  видеонаблюдения и мультимедиа систем, а также имеет собственный сборочный цех щитового оборудования.</p>
-        <p>Умный дом - инженерная система, которая контролирует все процессы: освещение и управление шторами, обогрев пола, кондиционирование и вентиляцию, системы безопасности, системы протечек воды и многие другие – для создания идеальной атмосферы.</p>
-      </div>
-      <img src="@/assets/images/smart_home.png" alt="Engineer.png">
+  <div class="galleria-container">
+    <div class="galleria-container-menu">
+      <div class="gcm-header">{{images[activeIndex].header}}</div>
+      <div class="gcm-text">{{images[activeIndex].text}}</div>
+      <Button label="Отправить заявку" rounded/>
     </div>
-    <div class="main-container">
-      <div class="name-of-section" style="opacity: 1">Как мы работаем?</div>
-      <div class="stages">
-        <div class="stage-of-work" v-for="stage in stages">
-          <div class="stage-of-work-stage">{{stage.stage}}</div>
-          <div class="stage-of-work-name">{{stage.name}}</div>
-          <div class="stage-of-work-text">{{stage.text}}</div>
-        </div>
-      </div>
-    </div>
+    <Galleria :value="images" v-model:activeIndex="activeIndex" :numVisible="5" :circular="true" :autoPlay="true" :showThumbnails="false" :transitionInterval="5000">
+      <template #item="slotProps">
+        <img :src="slotProps.item.src" :alt="slotProps.item.alt" style="width: 100%; display: block; height: 100vh"/>
+      </template>
+    </Galleria>
   </div>
 </template>
 
 <script lang="ts">
+import Galleria from 'primevue/galleria';
+import Button from 'primevue/button';
 
 export default {
   name: 'CompanyView',
+  components: {
+    Galleria,
+    Button
+  },
   data() {
     return {
-      stages: [
+      images: [
         {
-          stage: 1,
-          name: 'Выбор устройств и согласование условий',
-          text: 'Менеджер проконсультирует Вас и составит коммерческое предложение, отталкиваясь от Ваших предпочтений'
+          src: require('@/assets/images/banners/livingRoom.png'),
+          alt: 'smart_home.png',
+          header: 'Попробуйте умный дом вместе с HomeIntecH',
+          text: 'Оказываем полный спектр услуг автоматизации квартир и частных домов'
         },
         {
-          stage: 2,
-          name: 'Монтажные работы',
+          src: require('@/assets/images/banners/kitchenRoom.png'),
+          alt: 'serv_service.png',
+          header: 'Выбор устройств и согласование условий',
+          text: 'Менеджер проконсультирует Вас и составит коммерческое предложение'
+        },
+        {
+          src: require('@/assets/images/banners/hallRoom.png'),
+          alt: 'smart_home.png',
+          header: 'Монтажные работы',
           text: 'В удобное Вам время наши специалисты приедут и проведут монтажные работы по установке системы умного дома'
         },
         {
-          stage: 3,
-          name: 'Установка и настройка',
+          src: require('@/assets/images/banners/bedRoom.png'),
+          alt: 'serv_service.png',
+          header: 'Установка и настройка',
           text: 'Наши специалисты установят и настроят сценарии умного дома, а также ознакомят Вас со всеми функциями и возможностями умного дома'
         },
         {
-          stage: 4,
-          name: 'Сервисное обслуживание',
+          src: require('@/assets/images/banners/bathRoom.png'),
+          alt: 'smart_home.png',
+          header: 'Сервисное обслуживание',
           text: 'При возникновении сложностей или неполадок, они будут устранены специалистами нашей компании'
         }
-      ]
+      ],
+      activeIndex: 0
     }
   }
 }
@@ -57,79 +66,54 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
-  .background-section {
-    background: linear-gradient(var(--bluegray-50), var(--bluegray-300));
-    padding: 10px;
+.galleria-container {
+  position: relative;
+}
+
+:deep(.p-galleria) {
+  img {
+    height: 75vh;
+    object-fit: cover;
+    filter: brightness(0.4);
+  }
+}
+
+:deep(.p-button) {
+  width: 200px;
+  height: 55px;
+  background-color: rgba(get-color(button), 0.7);
+  display: block;
+  margin-top: 15px;
+  font-size: 1.1em;
+
+  &:hover {
+    background-color: get-color(button);
+  }
+  &:focus {
+    background-color: get-color(button);
+  }
+}
+
+.galleria-container-menu {
+  position: absolute;
+  bottom: 20vh;
+  padding-left: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  z-index: 1;
+
+  @mixin text-style($font-size) {
+    max-width: 50vw;
+    font-size: $font-size;
+    text-align: left;
+    font-weight: 600;
+    color: get-color(text-light);
+    padding-bottom: 10px;
   }
 
-  .content-container {
-    display: flex;
-    flex-flow: row wrap;
-
-    @include mobile-only {
-      flex-direction: column;
-    }
-
-    .text {
-      width: 100%;
-      @include desktop-only {
-        width: 50%;
-      }
-      padding: 0 5%;
-
-      p:first-child {
-        color: var(--blue-700);
-        font-size: 3em;
-        font-weight: bold;
-        text-align: center;
-      }
-
-      p:not(:first-child) {
-        font-size: 1.2em;
-        text-align: justify;
-      }
-    }
-
-    img {
-      width: 100%;
-      @include desktop-only {
-        width: 50%;
-      }
-      height: max-content;
-      margin: auto;
-      display: block;
-      border-radius: 5px;
-      filter: drop-shadow(6px 4px 3px var(--gray-500));
-    }
-  }
-
-  .stages {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    margin: 25px;
-
-    .stage-of-work {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 300px;
-
-      &-stage {
-        background-color: var(--bluegray-300);
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        @include flex-centering;
-      }
-      &-name {
-        font-weight: bold;
-        text-align: start;
-        margin: 15px 0px;
-      }
-      &-text {
-        text-align: start;
-      }
-    }
-  }
+  .gcm-header { @include text-style(3em) }
+  .gcm-text { @include text-style(2em) }
+}
 </style>

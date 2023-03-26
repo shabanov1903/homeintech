@@ -1,9 +1,16 @@
 <template>
   <div>
+    <Dialog :header="activeDialogData.name"
+      v-model:visible="displayDialog"
+      :style="{
+        width: '50%'
+      }">
+      <div class="dialog-item" v-for="service in activeDialogData.services"><i class="pi pi-verified"></i> {{ service }}</div>
+    </Dialog>
     <div class="main-container">
       <div class="name-of-section">Услуги</div>
       <div class="services-container">
-        <Card v-for="card in cards">
+        <Card v-for="card in cards" @click="showDialog(card)">
           <template #header>
               <img :alt="card.url" :src="card.url">
           </template>
@@ -44,11 +51,13 @@
 
 <script lang="ts">
 import Card from 'primevue/card';
+import Dialog from 'primevue/dialog';
 
 export default {
   name: 'ServicesView',
   components: {
-    Card
+    Card,
+    Dialog
   },
   data() {
     return {
@@ -56,42 +65,50 @@ export default {
         {
           url: require('@/assets/images/serv_project.png'),
           name: 'Проектирование',
-          text: 'Инженерный состав нашей компании насчитывает более 10 инженеров проектировщиков'
+          text: 'Инженерный состав нашей компании насчитывает более 10 инженеров проектировщиков',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_logistics.png'),
           name: 'Поставка',
-          text: 'Наша компания обладает широкими возможностями для поставки всех необходимых материалов'
+          text: 'Наша компания обладает широкими возможностями для поставки всех необходимых материалов',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_installation.png'),
           name: 'Монтаж',
-          text: 'В штате HomeIntech собраны профессионалы, осуществляющие монтаж материалов и оборудования любой сложности'
+          text: 'В штате HomeIntech собраны профессионалы, осуществляющие монтаж материалов и оборудования любой сложности',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_adjustment.png'),
           name: 'Наладка',
-          text: 'Грамотно натроенная система залог комфортной эксплуатации'
+          text: 'Грамотно натроенная система залог комфортной эксплуатации',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_visualization.png'),
           name: 'Визуализация',
-          text: 'Применение мобильных приложений позволяет сделать управление Умным домом понятным и удобным'
+          text: 'Применение мобильных приложений позволяет сделать управление Умным домом понятным и удобным',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_service.png'),
           name: 'Обслуживание',
-          text: 'Комплексное обслуживание включает в себя проверку компонентов умного дома и их диагностику'
+          text: 'Комплексное обслуживание включает в себя проверку компонентов умного дома и их диагностику',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_consultations.png'),
           name: 'Консультации',
-          text: 'Мы всегда готовы подсказать Вам в любой непростой ситуации'
+          text: 'Мы всегда готовы подсказать Вам в любой непростой ситуации',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
         {
           url: require('@/assets/images/serv_calc.png'),
           name: 'Расчеты',
-          text: 'Наши специалисты готовы сделать коммерческое предложение прямо сейчас'
+          text: 'Наши специалисты готовы сделать коммерческое предложение прямо сейчас',
+          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
         },
       ],
       phoneLeft: [
@@ -127,7 +144,17 @@ export default {
           text: "Управляйте музыкой и кино с любых носителей в каждой точке в дома",
           class: 'pi pi-volume-up'
         }
-      ]
+      ],
+      displayDialog: false,
+      activeDialogData: {
+        url: null, name: null, text: null, services: null
+      }
+    }
+  },
+  methods: {
+    showDialog(data: Object) {
+      this.activeDialogData = data;
+      this.displayDialog = true;
     }
   }
 }
@@ -238,6 +265,18 @@ export default {
         }
       }
     }
+  }
+}
+
+.dialog-item {
+  color: var(--bluegray-800);
+  margin: 15px;
+  display: flex;
+  align-items: center;
+
+  i {
+    font-size: 1.25em;
+    margin-right: 10px;
   }
 }
 </style>
