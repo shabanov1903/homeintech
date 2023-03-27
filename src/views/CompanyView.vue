@@ -1,5 +1,5 @@
 <template>
-  <div class="galleria-container">
+  <div class="galleria-container section-container">
     <div class="galleria-container-menu">
       <div class="gcm-header">{{images[activeIndex].header}}</div>
       <div class="gcm-text">{{images[activeIndex].text}}</div>

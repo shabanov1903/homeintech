@@ -97,7 +97,7 @@ export default {
   top: 0;
   z-index: 100;
   width: 100%;
-  opacity: .65;
+  opacity: .55;
   background-color: white;
   height: 50px;
   

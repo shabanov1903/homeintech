@@ -1,48 +1,39 @@
 <template>
   <div>
-    <Dialog :header="activeDialogData.name"
-      v-model:visible="displayDialog"
-      :style="{
-        width: '50%'
-      }">
-      <div class="dialog-item" v-for="service in activeDialogData.services"><i class="pi pi-verified"></i> {{ service }}</div>
-    </Dialog>
-    <div class="main-container">
-      <div class="name-of-section">Услуги</div>
-      <div class="services-container">
-        <Card v-for="card in cards" @click="showDialog(card)">
-          <template #header>
-              <img :alt="card.url" :src="card.url">
-          </template>
-          <template #title>
-              {{ card.name }}
-          </template>
-          <template #content>
-              {{ card.text }}
-          </template>
-        </Card>
-      </div>
-    </div>
-    <div class="phone-container">
-      <div class="phone-container-left">
-        <div v-for="titul in phoneLeft">
-          <div>
-            <p>{{titul.name}}</p>
-            <p>{{titul.text}}</p>
+    <div class="section-container" id="services-part-1">
+      <p class="header">Это создаст уют Вашему дому</p>
+      <div class="phone-container">
+        <div class="phone-container-left">
+          <div v-for="titul in phoneLeft">
+            <div>
+              <p>{{titul.name}}</p>
+              <p>{{titul.text}}</p>
+            </div>
+            <div><i style="font-size: 2em" :class="titul.class"></i></div>
           </div>
-          <div><i style="font-size: 2em" :class="titul.class"></i></div>
+        </div>
+        <div>
+          <img src="@/assets/images/serv_mobile.svg" alt="Engineer.png">
+        </div>
+        <div class="phone-container-right">
+          <div v-for="titul in phoneRight">
+            <div><i style="font-size: 2em" :class="titul.class"></i></div>
+            <div>
+              <p>{{titul.name}}</p>
+              <p>{{titul.text}}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <img src="@/assets/images/serv_mobile.svg" alt="Engineer.png">
-      </div>
-      <div class="phone-container-right">
-        <div v-for="titul in phoneRight">
-          <div><i style="font-size: 2em" :class="titul.class"></i></div>
-          <div>
-            <p>{{titul.name}}</p>
-            <p>{{titul.text}}</p>
-          </div>
+      <div><i class="pi pi-chevron-down next-service-page" @click="toNextServicesPart()"></i></div>
+    </div>
+    <div class="section-container services-part-2" id="services-part-2" ref="services-part-2">
+      <p class="header">Мы предлагаем технологии, которые помогут Вам жить в комфорте уже сегодня</p>
+      <div class="services-container">
+        <div class="service" v-for="service in services">
+          <div class="service-icon"><i :class="service.class"></i></div>
+          <div class="service-name">{{service.name}}</div>
+          <div class="service-text">{{service.text}}</div>
         </div>
       </div>
     </div>
@@ -50,67 +41,11 @@
 </template>
 
 <script lang="ts">
-import Card from 'primevue/card';
-import Dialog from 'primevue/dialog';
 
 export default {
   name: 'ServicesView',
-  components: {
-    Card,
-    Dialog
-  },
   data() {
     return {
-      cards: [
-        {
-          url: require('@/assets/images/serv_project.png'),
-          name: 'Проектирование',
-          text: 'Инженерный состав нашей компании насчитывает более 10 инженеров проектировщиков',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_logistics.png'),
-          name: 'Поставка',
-          text: 'Наша компания обладает широкими возможностями для поставки всех необходимых материалов',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_installation.png'),
-          name: 'Монтаж',
-          text: 'В штате HomeIntech собраны профессионалы, осуществляющие монтаж материалов и оборудования любой сложности',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_adjustment.png'),
-          name: 'Наладка',
-          text: 'Грамотно натроенная система залог комфортной эксплуатации',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_visualization.png'),
-          name: 'Визуализация',
-          text: 'Применение мобильных приложений позволяет сделать управление Умным домом понятным и удобным',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_service.png'),
-          name: 'Обслуживание',
-          text: 'Комплексное обслуживание включает в себя проверку компонентов умного дома и их диагностику',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_consultations.png'),
-          name: 'Консультации',
-          text: 'Мы всегда готовы подсказать Вам в любой непростой ситуации',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-        {
-          url: require('@/assets/images/serv_calc.png'),
-          name: 'Расчеты',
-          text: 'Наши специалисты готовы сделать коммерческое предложение прямо сейчас',
-          services: ['Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок', 'Подзалупный творожок']
-        },
-      ],
       phoneLeft: [
         {
           name: "Управление освещением",
@@ -145,16 +80,34 @@ export default {
           class: 'pi pi-volume-up'
         }
       ],
-      displayDialog: false,
-      activeDialogData: {
-        url: null, name: null, text: null, services: null
-      }
+      services: [
+        {
+          name: "Проектирование",
+          text: "Составление технического задания, проектирование, подбор оборудования, создание проекта кабельных трасс и полной спецификации с конечным согласованием",
+          class: 'pi pi-list'
+        },
+        {
+          name: "Монтаж",
+          text: "Монтаж кабельных трасс, шеф-монтаж в случае выполнения работ подрядчиком заказчика, монтаж щитов и оборудования систем умного дома",
+          class: 'pi pi-wrench'
+        },
+        {
+          name: "Настройка",
+          text: "Интеграция оборудования на объекте, программирование системы, настройка пользовательского интерфейса и сценариев",
+          class: 'pi pi-mobile'
+        },
+        {
+          name: "Обслуживание",
+          text: "Обучение использования системы, плановая дополнительная настройка через два месяцапосле запуска, полное техническое обслуживание по гарантии",
+          class: 'pi pi-comments'
+        }
+      ]
     }
   },
   methods: {
-    showDialog(data: Object) {
-      this.activeDialogData = data;
-      this.displayDialog = true;
+    toNextServicesPart() {
+      const element = this.$refs['services-part-2'];
+      element.scrollIntoView({behavior: "smooth"});
     }
   }
 }
@@ -163,66 +116,10 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
-.main-container {
-  background-image: url('@/assets/images/bg_services.png');
-  background-size: 100%;
-}
-.name-of-section {
-  color: var(--grey-600)
-}
-
-.services-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
-    justify-content: center;
-    gap: 40px;
-    @include large-desktop-only {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      justify-items: center;
-    }
-    @include mobile-only {
-      grid-template-columns: repeat(auto-fill, 170px);
-    }
-
-    margin: 20px;
-  }
-
-  :deep(.p-card) {
-    width: 250px;
-    height: 350px;
-    @include mobile-only {
-      width: 170px;
-      height: 280px;
-    }
-
-    cursor: pointer;
-
-    background-color: var(--gray-300);
-    box-shadow: 5px 1px 15px var(--gray-500);
-
-    &:hover {
-      background-color: var(--bluegray-300);
-    }
-  }
-  
-  :deep(.p-card-title) {
-    @include mobile-only {
-      font-size: 1em;
-    }
-  }
-
-  :deep(.p-card-content) {
-    font-size: 0.9em;
-    @include mobile-only {
-      font-size: 0.7em;
-    }
-    font-family: "Montserrat", sans-serif;
-  }
-
 .phone-container {
   @include flex-centering;
   flex-direction: row;
-  padding: 25px;
+  padding: 10px;
 
   &-left {
     display: flex;
@@ -268,15 +165,63 @@ export default {
   }
 }
 
-.dialog-item {
-  color: var(--bluegray-800);
-  margin: 15px;
-  display: flex;
-  align-items: center;
+.next-service-page {
+  font-size: 1.5em;
+  cursor: pointer;
+  
+  animation-name: move-chevron;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
 
-  i {
-    font-size: 1.25em;
-    margin-right: 10px;
+@keyframes move-chevron {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+.services-part-2 {
+  background-image: url('@/assets/images/bg_services.png');
+  background-size: 100%;
+  background-attachment: fixed;
+  color: get-color(text-light);
+  justify-content: center;
+}
+
+.services-container {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 5vh 10vw; 
+
+  .service {
+    margin: 25px;
+    width: 20vw;
+
+    &-icon {
+      i {
+        font-size: 4em;
+      }
+    }
+
+    &-name {
+      margin: 20px 0px;
+      font-weight: 600;
+      font-size: 1.5em;
+    }
+
+    &-text {
+      margin: 10px 0px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    &:hover {
+      color: get-color(button);
+      cursor: pointer;
+    }
   }
 }
 </style>

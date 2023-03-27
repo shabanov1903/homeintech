@@ -8,3 +8,15 @@
     color: var(--blue-700);
     opacity: 0.65;
 }
+
+.section-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .header {
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+}
