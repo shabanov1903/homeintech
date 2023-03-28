@@ -25,9 +25,9 @@
           </div>
         </div>
       </div>
-      <div><i class="pi pi-chevron-down next-service-page" @click="toNextServicesPart()"></i></div>
+      <div><i class="pi pi-chevron-down next-page" @click="toNextServicesPart()"></i></div>
     </div>
-    <div class="section-container services-part-2" id="services-part-2" ref="services-part-2">
+    <div class="section-container static-image-background" id="services-part-2" ref="services-part-2">
       <p class="header">Мы предлагаем технологии, которые помогут Вам жить в комфорте уже сегодня</p>
       <div class="services-container">
         <div class="service" v-for="service in services">
@@ -165,30 +165,8 @@ export default {
   }
 }
 
-.next-service-page {
-  font-size: 1.5em;
-  cursor: pointer;
-  
-  animation-name: move-chevron;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes move-chevron {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(5px);
-  }
-}
-
-.services-part-2 {
+.static-image-background {
   background-image: url('@/assets/images/bg_services.png');
-  background-size: 100%;
-  background-attachment: fixed;
-  color: get-color(text-light);
-  justify-content: center;
 }
 
 .services-container {
@@ -220,7 +198,7 @@ export default {
 
     &:hover {
       color: get-color(button);
-      cursor: pointer;
+      cursor: default;
     }
   }
 }

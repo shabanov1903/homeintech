@@ -97,19 +97,15 @@ export default {
   top: 0;
   z-index: 100;
   width: 100%;
-  opacity: .55;
-  background-color: white;
+  opacity: .70;
   height: 50px;
-  
-  &:hover {
-    opacity: .75;
-  }
 
   &-company-name {
     padding: 0 30px;
     font-size: 1.75em;
     font-weight: 600;
     color: get-color(button);
+    cursor: default;
   }
 
   &-items {
@@ -120,10 +116,10 @@ export default {
       cursor: pointer;
       padding: 0 30px;
       transition: all .25s ease-in-out;
+      color: get-color(button);
 
       &:hover {
         transform: scale(1.25);
-        color: get-color(button);
       }
     }
   }

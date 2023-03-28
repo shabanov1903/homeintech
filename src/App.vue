@@ -17,6 +17,8 @@ export default {
 @import "primevue/resources/primevue.min.css";
 @import "primevue/resources/themes/md-light-indigo/theme.css";
 @import "primeicons/primeicons.css";
+@import "swiper/swiper.min.css";
+@import "swiper/css/navigation";
 
 #app {
   font-family: "Montserrat", sans-serif;

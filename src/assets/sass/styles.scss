@@ -19,4 +19,40 @@
         font-size: 1.5em;
         font-weight: 600;
     }
+
+    .header2 {
+        font-size: 2em;
+        font-weight: 600;
+    }
+    
+    .header3 {
+        font-size: 3em;
+        font-weight: 600;
+    }
+}
+
+.next-page {
+    font-size: 1.5em;
+    cursor: pointer;
+
+    animation-name: move-chevron;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes move-chevron {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(5px);
+    }
+}
+
+.static-image-background {
+    background-size: 100%;
+    background-attachment: fixed;
+    color: white;
+    justify-content: center;
 }

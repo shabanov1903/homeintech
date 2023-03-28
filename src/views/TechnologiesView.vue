@@ -1,24 +1,44 @@
 <template>
-  <div class="section-container">
-    <p class="header">Наши преимущества</p>
-    <div class="banner-container">
-      <div class="banner-container-item">
-        <div v-for="argument in arguments">
-          <div><i style="font-size: 2em" :class="argument.class"></i></div>
-          <div>
-            <p>{{argument.name}}</p>
-            <p>{{argument.text}}</p>
+  <div>
+    <div class="section-container" id="technologies-part-1">
+      <p class="header2">Наши преимущества</p>
+      <div class="banner-container">
+        <div class="banner-container-item">
+          <div v-for="argument in arguments">
+            <div><i style="font-size: 2em" :class="argument.class"></i></div>
+            <div>
+              <p>{{argument.name}}</p>
+              <p>{{argument.text}}</p>
+            </div>
           </div>
         </div>
+        <div class="static-photo">
+          <img src="@/assets/images/tech_interier.png" alt="Interier.png">
+        </div>
       </div>
-      <div>
-        <img src="@/assets/images/tech_interier.png" alt="Interier.png">
+      <div><i class="pi pi-chevron-down next-page" @click="toNextServicesPart()"></i></div>
+    </div>
+    <div class="section-container static-image-background" id="technologies-part-2" ref="technologies-part-2">
+      <p class="header2">Наполните дом умными устройствами</p>
+      <!-- Slider main container -->
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide" v-for="slide in slides">
+            <img :src="slide.src" :alt="slide.alt"/>
+          </div>
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Swiper, { Navigation } from 'swiper';
 
 export default {
   name: 'TechnologiesView',
@@ -40,7 +60,52 @@ export default {
           text: "Вы будете знать обо всём, что в нём происходит, даже находясь в другом городе",
           class: 'pi pi-lock'
         }
-      ]
+      ],
+      slides: [
+        {
+          src: require('@/assets/images/devices/houseDevice1.png'),
+          alt: '...'
+        },
+        {
+          src: require('@/assets/images/devices/houseDevice2.png'),
+          alt: '...'
+        },
+        {
+          src: require('@/assets/images/devices/houseDevice3.png'),
+          alt: '...'
+        },
+        {
+          src: require('@/assets/images/devices/houseDevice4.png'),
+          alt: '...'
+        },
+        {
+          src: require('@/assets/images/devices/houseDevice5.png'),
+          alt: '...'
+        }
+      ],
+    }
+  },
+  mounted() {
+    const swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      modules: [Navigation],
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false
+      },
+      slidesPerView: 2,
+      centeredSlides: true
+    })
+  },
+  methods: {
+    toNextServicesPart() {
+      const element = this.$refs['technologies-part-2'];
+      element.scrollIntoView({behavior: "smooth"});
     }
   }
 }
@@ -49,19 +114,22 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
-.section-container {
-  justify-content: center;
-
-  .header {
-    font-size: 2.5em;
+.static-photo {
+  img {
+    width: 80vw;
+    display: block;
+    border-radius: 5px;
+    filter: drop-shadow(6px 4px 3px var(--gray-500));
   }
 }
 
-img {
-  width: 80vw;
-  display: block;
-  border-radius: 5px;
-  filter: drop-shadow(6px 4px 3px var(--gray-500));
+.swiper {
+  width: 70vw;
+  height: 50vh;
+}
+
+.swiper-slide-active {
+  margin: 0px 10px;
 }
 
 .banner-container {
@@ -94,6 +162,34 @@ img {
         }
       }
     }
+  }
+}
+
+.static-image-background {
+  background-image: url('@/assets/images/bg_technologies.png');
+  justify-content: space-evenly;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: .5;
+  filter: grayscale(1);
+}
+
+.swiper-slide {
+  img {
+    width: 30vw;
+    height: 50vh;
+    object-fit: cover;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: get-color(text-light);
+
+  &:hover {
+    color: get-color(button);
   }
 }
 </style>
