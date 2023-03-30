@@ -26,6 +26,7 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide" v-for="slide in slides">
+            <p>{{slide.text}}</p>
             <img :src="slide.src" :alt="slide.alt"/>
           </div>
         </div>
@@ -38,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import Swiper, { Navigation } from 'swiper';
+import Swiper, { Navigation, Autoplay } from 'swiper';
 
 export default {
   name: 'TechnologiesView',
@@ -64,23 +65,28 @@ export default {
       slides: [
         {
           src: require('@/assets/images/devices/houseDevice1.png'),
-          alt: '...'
+          alt: '...',
+          text: 'Больше не придётся лишний раз вставать из теплой кровати, чтобы выключить свет'
         },
         {
           src: require('@/assets/images/devices/houseDevice2.png'),
-          alt: '...'
+          alt: '...',
+          text: 'Ваши друзья точно оценят новые функции Вашего дома и будут Вам завидовать'
         },
         {
           src: require('@/assets/images/devices/houseDevice3.png'),
-          alt: '...'
+          alt: '...',
+          text: 'Мониторинг необходимых параметров из любой точки мира обеспечит уверенность о безопасности квартиры'
         },
         {
           src: require('@/assets/images/devices/houseDevice4.png'),
-          alt: '...'
+          alt: '...',
+          text: 'Удобное и красивое приложение важно не только для заказчика, но и для нас самих'
         },
         {
           src: require('@/assets/images/devices/houseDevice5.png'),
-          alt: '...'
+          alt: '...',
+          text: 'Умные устройства богаты не только своим функционалом, но также современным и изящным дизайном'
         }
       ],
     }
@@ -89,13 +95,13 @@ export default {
     const swiper = new Swiper('.swiper', {
       direction: 'horizontal',
       loop: true,
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
       autoplay: {
-        delay: 2000,
+        delay: 4000,
         disableOnInteraction: false
       },
       slidesPerView: 2,
@@ -121,15 +127,6 @@ export default {
     border-radius: 5px;
     filter: drop-shadow(6px 4px 3px var(--gray-500));
   }
-}
-
-.swiper {
-  width: 70vw;
-  height: 50vh;
-}
-
-.swiper-slide-active {
-  margin: 0px 10px;
 }
 
 .banner-container {
@@ -168,6 +165,19 @@ export default {
 .static-image-background {
   background-image: url('@/assets/images/bg_technologies.png');
   justify-content: space-evenly;
+}
+
+.swiper {
+  width: 70vw;
+  height: 50vh;
+}
+
+.swiper-slide-active {
+  margin: 0px 10px;
+  p {
+    margin-top: unset;
+    font-weight: 500;
+  }
 }
 
 .swiper-slide-prev,
