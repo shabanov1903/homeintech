@@ -78,21 +78,7 @@ export default {
   }
 }
 
-:deep(.p-button) {
-  width: 200px;
-  height: 55px;
-  background-color: rgba(get-color(button), 0.7);
-  display: block;
-  margin-top: 15px;
-  font-size: 1.1em;
-
-  &:hover {
-    background-color: get-color(button);
-  }
-  &:focus {
-    background-color: get-color(button);
-  }
-}
+:deep(.p-button) { @include override-btn; }
 
 .galleria-container-menu {
   position: absolute;

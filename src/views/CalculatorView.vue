@@ -1,66 +1,59 @@
 <template>
-  <div class="main-container">
-    <div class="name-of-section">Калькулятор</div>
-
-    <div class="inputgroup-container">
-      <div class="p-inputgroup" v-for="paragraph in paragraphs">
-        <Transition>
-          <div class="input-name" v-if="paragraph.value !== ''">{{paragraph.placeholder}}</div>
-        </Transition>
-        <span class="p-inputgroup-addon">
-            <i v-bind:class="paragraph.class"></i>
-        </span>
-        <InputText v-bind:placeholder="paragraph.placeholder" v-model="paragraph.value" />
+  <div>
+    <div class="section-container">
+      <p class="header2">Выберите свой уровень комфорта, который удовлетворит все Ваши ожидания от технологии "Умный дом"</p>
+      <div class="stages-container">
+        <template v-for="stage in stages">
+          <div class="card">
+            <div>
+              <div class="card-name">
+                {{ stage.name }}
+              </div>
+              <div class="card-img">
+                <img :src="stage.img">
+              </div>
+              <div class="card-desc">
+                {{ stage.desc }}
+              </div>
+            </div>
+            <Button label="Подробнее" rounded/>
+          </div>
+        </template>
       </div>
-    </div>
-
-    <div class="full-cost-container">
-      Итого: <span>{{getFullCost}}</span> руб.
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import * as _is from "../../node_modules/is_js";
-import InputText from 'primevue/inputtext';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
 
 export default {
   name: 'CalculatorView',
   components: {
-    InputText
+    Card,
+    Button
   },
   data() {
     return {
-      paragraphs: [
-        {id: 0, placeholder: 'Площадь объекта', class: 'pi pi-home', value: '', coefficient: 1000},
-        {id: 1, placeholder: 'Количество этажей', class: 'pi pi-building', value: '', coefficient: 20000},
-        {id: 2, placeholder: 'Количество жилых комнат', class: 'pi pi-moon', value: '', coefficient: 5000},
-        {id: 3, placeholder: 'Количество ванных/санузлов', class: 'pi pi-ticket', value: '', coefficient: 10000},
-        {id: 4, placeholder: 'Количество кухонь', class: 'pi pi-table', value: '', coefficient: 10000},
-        {id: 5, placeholder: 'Количество иных помещений', class: 'pi pi-ellipsis-v', value: '', coefficient: 5000},
+      stages: [
+        {
+          name: 'Стандарт',
+          desc: 'Бюджетный вариант для небольшой квартиры площадью до 75 кв.м. Применение беспроводных технологий и открытой системы визуализации со стандартным интерфейсом',
+          img: require('@/assets/images/comforts/standart.png')
+        },
+        {
+          name: 'Комфорт',
+          desc: 'Прекрасно подойдёт для многокомнатных квартир и небольших коттеджей. Используются комбинации проводных и беспроводных технологий. Система визуализации на выбор с интерфейсом, учитывающим требования заказчика',
+          img: require('@/assets/images/comforts/comfort.png')
+        },
+        {
+          name: 'Премиум',
+          desc: 'Используются проводные технологии и система визуализации с платной лицензией, что позволяет выполнить системы больших объемов с неограниченным количеством устройств и функций',
+          img: require('@/assets/images/comforts/premium.png')
+        },
       ]
-    }
-  },
-  methods: {
-    getValue(paragraph: any): number {
-      const value = Number(paragraph.value.replace(',', '.'));
-      if(_is.number(value)) {
-        return Number(value) * paragraph.coefficient;
-      }
-
-      return 0;
-    }
-  },
-  computed: {
-    getFullCost(): number {
-
-      let cost = 0;
-
-      this.paragraphs.forEach(paragraph => {
-        cost += this.getValue(paragraph)
-      })
-      
-      return cost;
     }
   }
 }
@@ -69,48 +62,80 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/mixins.scss';
 
-.main-container {
-  background-image: url('@/assets/images/bg_calculator.png');
-  background-size: 100%;
-}
-.name-of-section {
-  color: white;
-}
+.section-container {
+  justify-content: space-evenly;
+  background: linear-gradient(125deg, get-color(background-secondary), lightgray, rgba(get-color(button), 0.4));
+  background-size: 200% 300%;
 
-.inputgroup-container {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-}
+  -webkit-animation: Animation 10s ease infinite;
+  -moz-animation: Animation 10s ease infinite;
+  animation: Animation 10s ease infinite;
 
-.full-cost-container {
-  font-size: 2em;
-  margin: {
-    top: 20px;
-    bottom: 30px;
+  .header2 {
+    width: 75%;
+    align-self: center;
   }
-  color: white;
 }
 
-.input-name {
-  position: absolute;
-  top: -25px;
-  color: white;
+@keyframes Animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
+}
+@-webkit-keyframes Animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
+}
+@-moz-keyframes Animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
 }
 
-.p-inputgroup {
-  width: 50%;
-  margin: 15px;
-  position: relative;
+.stages-container {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
+.card {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
+  &-name {
+    text-align: start;
+    font-size: 1.75em;
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
+  &-img {
+    img {
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+    }
+  }
+  &-desc {
+    text-align: start;
+    padding: 5px 0px;
+    font-weight: 500;
+  }
+
+  :deep(.p-button) {
+    @include override-btn;
+    width: 125px;
+    height: 50px;
+    background-color: rgba(get-color(button), $alpha: 0.0);
+    color: get-color(text-dark);
+    border: 2px solid rgba(get-color(text-light), $alpha: 0.6);
+    border-radius: 25px;
+    &:hover {
+      background-color: rgba(get-color(button), $alpha: 0.35);
+    }
+    margin-top: 10px;
+  }
 }
 </style>

@@ -27,7 +27,7 @@
           <!-- Slides -->
           <div class="swiper-slide" v-for="slide in slides">
             <p>{{slide.text}}</p>
-            <img :src="slide.src" :alt="slide.alt"/>
+            <img :src="slide.src"/>
           </div>
         </div>
         <!-- If we need navigation buttons -->
@@ -65,27 +65,22 @@ export default {
       slides: [
         {
           src: require('@/assets/images/devices/houseDevice1.png'),
-          alt: '...',
           text: 'Больше не придётся лишний раз вставать из теплой кровати, чтобы выключить свет'
         },
         {
           src: require('@/assets/images/devices/houseDevice2.png'),
-          alt: '...',
           text: 'Ваши друзья точно оценят новые функции Вашего дома и будут Вам завидовать'
         },
         {
           src: require('@/assets/images/devices/houseDevice3.png'),
-          alt: '...',
           text: 'Мониторинг необходимых параметров из любой точки мира обеспечит уверенность о безопасности квартиры'
         },
         {
           src: require('@/assets/images/devices/houseDevice4.png'),
-          alt: '...',
           text: 'Удобное и красивое приложение важно не только для заказчика, но и для нас самих'
         },
         {
           src: require('@/assets/images/devices/houseDevice5.png'),
-          alt: '...',
           text: 'Умные устройства богаты не только своим функционалом, но также современным и изящным дизайном'
         }
       ],
