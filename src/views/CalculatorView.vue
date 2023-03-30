@@ -64,8 +64,8 @@ export default {
 
 .section-container {
   justify-content: space-evenly;
-  background: linear-gradient(125deg, get-color(background-secondary), lightgray, rgba(get-color(button), 0.4));
-  background-size: 200% 300%;
+  background: linear-gradient(125deg, black, gray, rgb(80, 79, 79));
+  background-size: 200% 200%;
 
   -webkit-animation: Animation 10s ease infinite;
   -moz-animation: Animation 10s ease infinite;
@@ -75,6 +75,7 @@ export default {
     width: 75%;
     align-self: center;
   }
+  color: get-color(text-light);
 }
 
 @keyframes Animation {
@@ -129,7 +130,6 @@ export default {
     width: 125px;
     height: 50px;
     background-color: rgba(get-color(button), $alpha: 0.0);
-    color: get-color(text-dark);
     border: 2px solid rgba(get-color(text-light), $alpha: 0.6);
     border-radius: 25px;
     &:hover {
