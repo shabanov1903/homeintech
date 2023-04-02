@@ -7,7 +7,7 @@
     :contentStyle="{
       padding: '0px 10px 10px',
       borderRadius: '5px',
-      background: 'linear-gradient(rgba(15,167,217, 0.8) 10%, #212121 80%)'
+      backgroundColor: 'rgba(15, 167, 217, 0.95)'
     }">
     <div class="close" @click="closeDialog('pi-dialog')"><i class="pi pi-times-circle"></i></div>
     <div class="dialog-header">Отправьте нам Ваши контактные данные</div>

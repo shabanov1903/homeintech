@@ -65,13 +65,15 @@ export default {
   align-self: flex-end;
 }
 :deep(.p-button) {
-  background: get-color(button);
-  background-color: rgba(get-color(button), $alpha: .0);
+  background: get-color(text-light);
+  background-color: rgba(get-color(text-light), $alpha: .0);
   border-radius: 20px;
-  border: 2px solid rgba(get-color(button), $alpha: .8);
+  border: 2px solid rgba(get-color(text-light), $alpha: .35);
+  font-weight: 600;
 
   &:hover, &:focus {
-    background-color: rgba(get-color(button), $alpha: .75);
+    background-color: rgba(get-color(text-light), $alpha: .0);
+    border: 2px solid get-color(text-light);
   }
 }
 :deep(.p-inputtext) {
