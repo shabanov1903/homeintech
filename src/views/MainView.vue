@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="menu">
-      <div class="menu-company-name">HomeIntecH</div>
+      <div class="menu-company-name" @click="tabChange({href: 'id-company'})">HomeIntecH</div>
       <div class="menu-items">
         <template v-for="item in items">
           <i class="menu-items-component" :class="item.icon" @click="tabChange(item)"></i>
@@ -15,7 +15,7 @@
       <CalculatorView id="id-calculator"></CalculatorView>
       <ContactsView id="id-contacts"></ContactsView>
     </div>
-    <PhoneButton></PhoneButton>
+    <StaticBannerController></StaticBannerController>
   </div>
   <footer>
     <div>
@@ -34,7 +34,7 @@ import ServicesView from './ServicesView.vue';
 import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
 import ContactsView from './ContactsView.vue';
-import PhoneButton from '../components/PhoneButton.vue';
+import StaticBannerController from '../components/StaticBannerController.vue';
 
 export default {
   name: 'MainView',
@@ -47,15 +47,15 @@ export default {
     ServicesView,
     CalculatorView,
     ContactsView,
-    PhoneButton
+    StaticBannerController
   },
   data() {
     return {
       items: [
         { label: 'Компания', icon: 'pi pi-fw pi-home', href: 'id-company' },
         { label: 'Услуги', icon: 'pi pi-fw pi-shopping-bag', href: 'id-services' },
-        { label: 'Технологии', icon: 'pi pi-fw pi-database', href: 'id-technologies' },
-        { label: 'Калькулятор', icon: 'pi pi-fw pi-calculator', href: 'id-calculator' },
+        { label: 'Технологии', icon: 'pi pi-fw pi-thumbs-up', href: 'id-technologies' },
+        { label: 'Калькулятор', icon: 'pi pi-fw pi-wallet', href: 'id-calculator' },
         { label: 'Контакты', icon: 'pi pi-fw pi-phone', href: 'id-contacts' }
       ],
       desktopSize: 768,
@@ -101,7 +101,7 @@ export default {
     font-size: 1.75em;
     font-weight: 600;
     color: get-color(button);
-    cursor: default;
+    cursor: pointer;
   }
 
   &-items {

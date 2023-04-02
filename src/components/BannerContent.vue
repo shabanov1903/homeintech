@@ -21,7 +21,7 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 
 export default {
-  name: 'PhoneBanner',
+  name: 'BannerContent',
   components: {
     Dialog,
     Button,
@@ -65,9 +65,25 @@ export default {
   align-self: flex-end;
 }
 :deep(.p-button) {
-  background: var(--bluegray-700);
+  background: get-color(button);
+  background-color: rgba(get-color(button), $alpha: .0);
+  border-radius: 20px;
+  border: 2px solid rgba(get-color(button), $alpha: .8);
+
+  &:hover, &:focus {
+    background-color: rgba(get-color(button), $alpha: .75);
+  }
 }
 :deep(.p-inputtext) {
   width: 100%;
+  border-radius: 30px;
+  background-color: rgba(get-color(text-light), $alpha: .75);
+  color: get-color(text-dark);
+  font-weight: 600;
+
+  &:hover, &:focus {
+    border-color: get-color(button);
+    box-shadow: 1px 0px 3px get-color(button);
+  }
 }
 </style>

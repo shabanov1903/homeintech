@@ -15,7 +15,7 @@
               {{ stage.desc }}
             </div>
           </div>
-          <Button label="Подробнее" rounded/>
+          <Button label="Подробнее" rounded @click="openBanner()"/>
         </div>
       </template>
     </div>
@@ -32,6 +32,16 @@ export default {
   components: {
     Card,
     Button
+  },
+  inject: {
+    banner: {
+      from: 'Banner'
+    }
+  },
+  methods: {
+    openBanner: function() {
+      this.banner.open();
+    }
   },
   data() {
     return {
@@ -65,31 +75,15 @@ export default {
   background: linear-gradient(125deg, black, gray, rgb(80, 79, 79));
   background-size: 200% 200%;
 
-  -webkit-animation: Animation 10s ease infinite;
-  -moz-animation: Animation 10s ease infinite;
-  animation: Animation 10s ease infinite;
+  -webkit-animation: bg-animation 10s ease infinite;
+  -moz-animation: bg-animation 10s ease infinite;
+  animation: bg-animation 10s ease infinite;
 
   .header2 {
     width: 75%;
     align-self: center;
   }
   color: get-color(text-light);
-}
-
-@keyframes Animation {
-  0% { background-position: 10% 0% }
-  50% { background-position: 91% 100% }
-  100% { background-position: 10% 0% }
-}
-@-webkit-keyframes Animation {
-  0% { background-position: 10% 0% }
-  50% { background-position: 91% 100% }
-  100% { background-position: 10% 0% }
-}
-@-moz-keyframes Animation {
-  0% { background-position: 10% 0% }
-  50% { background-position: 91% 100% }
-  100% { background-position: 10% 0% }
 }
 
 .stages-container {

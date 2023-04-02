@@ -2,12 +2,15 @@
   <router-view />
 </template>
 
-<script lang="ts">import { DB } from './services/firebase/firebase.db';
+<script lang="ts">
+import { Banner } from './services/banner/banner.push';
+import { DB } from './services/firebase/firebase.db';
 
 export default {
   provide() {
     return {
-      DB: new DB()
+      DB: new DB(),
+      Banner: new Banner()
     }
   }
 }

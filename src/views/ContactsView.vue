@@ -2,13 +2,13 @@
   <div class="section-container">
     <p class="header2">Наши контакты</p>
     <div>
-      <p class="header">Свяжитесь с нами сами</p>
+      <p class="header">Свяжитесь с нами</p>
       <p>Телефон: +7 (996) 771-49-03</p>
       <p>Email: homeintech@gmail.com</p>
     </div>
     <div class="local-centered-area">
       <p class="header">Или закажите обратный звонок</p>
-      <Button label="Заказать" rounded/>
+      <Button label="Заказать" rounded @click="openBanner()"/>
     </div>
   </div>
 </template>
@@ -23,6 +23,16 @@ export default {
   components: {
     InputText,
     Button
+  },
+  inject: {
+    banner: {
+      from: 'Banner'
+    }
+  },
+  methods: {
+    openBanner: function() {
+      this.banner.open();
+    }
   }
 }
 </script>

@@ -5,13 +5,13 @@
     :style="{width: '40vw'}"
     ref="pi-dialog"
     :contentStyle="{
-      backgroundColor: 'var(--bluegray-50)',
-      padding: '0px 10px',
-      borderRadius: '5px'
+      padding: '0px 10px 10px',
+      borderRadius: '5px',
+      background: 'linear-gradient(rgba(15,167,217, 0.8) 10%, #212121 80%)'
     }">
     <div class="close" @click="closeDialog('pi-dialog')"><i class="pi pi-times-circle"></i></div>
-    <div class="dialog-hrader">Отправьте нам Ваши контактные данные</div>
-    <PhoneBanner @sendData="sendData"></PhoneBanner>
+    <div class="dialog-header">Отправьте нам Ваши контактные данные</div>
+    <BannerContent @sendData="sendData"></BannerContent>
   </Dialog>
   <Dialog
     :showHeader="false"
@@ -36,16 +36,17 @@
 <script lang="ts">
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import PhoneBanner from './PhoneBanner.vue';
+import BannerContent from './BannerContent.vue';
 import TWEEN from '@tweenjs/tween.js';
 import { Timestamp } from "firebase/firestore/lite";
+import { Subject } from 'rxjs';
 
 export default {
-  name: 'PhoneButton',
+  name: 'StaticBannerController',
   components: {
     Dialog,
     Button,
-    PhoneBanner
+    BannerContent
   },
   props: {
     text: String
@@ -53,6 +54,9 @@ export default {
   inject: {
     db: {
       from: 'DB'
+    },
+    banner: {
+      from: 'Banner'
     }
   },
   data() {
@@ -68,6 +72,13 @@ export default {
       this.setButtonPosition(45);
       setTimeout(() => this.setButtonPosition(35), 500);
     }, 3000);
+
+    const subject: Subject<boolean> = this.banner.getSubject();
+    subject.subscribe(param => {
+      if (param) {
+        this.showBanner();
+      }
+    })
   },
   methods: {
     showBanner: function() {
@@ -75,7 +86,7 @@ export default {
     },
     setButtonPosition: function(value) {
       const element = this.$refs['pi-button']?.$el;
-      element.classList.toggle('button-blink');
+      element?.classList?.toggle('button-blink');
 
       function animate(time) {
         requestAnimationFrame(animate)
@@ -113,7 +124,7 @@ export default {
       this.closeDialog('pi-dialog');
       this.displayMessage = true;
 
-      setTimeout(() => this.closeDialog('pi-message'), 2000);
+      setTimeout(() => this.closeDialog('pi-message'), 3000);
     }
   },
   computed: {
@@ -142,11 +153,15 @@ export default {
 }
 
 .button-blink {
-  background-color: var(--bluegray-500) !important;
+  background-color: rgba(get-color(button), .45) !important;
 }
 
 .p-button {
-  background-color: var(--bluegray-800);
+  background-color: get-color(background-secondary);
+
+  &:hover, &:focus {
+    background-color: get-color(button);
+  }
 }
 
 .close {
@@ -156,15 +171,19 @@ export default {
 
   i {
     font-size: 1.5em;
-    color: var(--bluegray-700);
+    color: rgba(get-color(text-light), .75);
     cursor: pointer;
+
+    &:hover {
+      color: rgba(get-color(text-dark), .35);
+    }
   }
 }
 
-.dialog-hrader {
+.dialog-header {
   text-align: center;
   font-size: 1.2em;
-  color: var(--bluegray-700);
+  color: get-color(text-light);
   margin: 15px;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="galleria-container-menu">
       <div class="gcm-header">{{images[activeIndex].header}}</div>
       <div class="gcm-text">{{images[activeIndex].text}}</div>
-      <Button label="Отправить заявку" rounded/>
+      <Button label="Отправить заявку" rounded @click="openBanner()"/>
     </div>
     <Galleria :value="images" v-model:activeIndex="activeIndex" :numVisible="5" :circular="true" :autoPlay="true" :showThumbnails="false" :transitionInterval="5000">
       <template #item="slotProps">
@@ -22,6 +22,16 @@ export default {
   components: {
     Galleria,
     Button
+  },
+  inject: {
+    banner: {
+      from: 'Banner'
+    }
+  },
+  methods: {
+    openBanner: function() {
+      this.banner.open();
+    }
   },
   data() {
     return {

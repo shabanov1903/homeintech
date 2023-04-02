@@ -56,3 +56,19 @@
     color: white;
     justify-content: center;
 }
+
+@keyframes bg-animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
+}
+@-webkit-keyframes Animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
+}
+@-moz-keyframes Animation {
+  0% { background-position: 10% 0% }
+  50% { background-position: 91% 100% }
+  100% { background-position: 10% 0% }
+}
