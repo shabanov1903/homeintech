@@ -1,25 +1,23 @@
 <template>
-  <div>
-    <div class="section-container">
-      <p class="header2">Выберите свой уровень комфорта, который удовлетворит все Ваши ожидания от технологии "Умный дом"</p>
-      <div class="stages-container">
-        <template v-for="stage in stages">
-          <div class="card">
-            <div>
-              <div class="card-name">
-                {{ stage.name }}
-              </div>
-              <div class="card-img">
-                <img :src="stage.img">
-              </div>
-              <div class="card-desc">
-                {{ stage.desc }}
-              </div>
+  <div class="section-container">
+    <p class="header2">Выберите свой уровень комфорта, который удовлетворит все Ваши ожидания от технологии "Умный дом"</p>
+    <div class="stages-container">
+      <template v-for="stage in stages">
+        <div class="card">
+          <div>
+            <div class="card-name">
+              {{ stage.name }}
             </div>
-            <Button label="Подробнее" rounded/>
+            <div class="card-img">
+              <img :src="stage.img">
+            </div>
+            <div class="card-desc">
+              {{ stage.desc }}
+            </div>
           </div>
-        </template>
-      </div>
+          <Button label="Подробнее" rounded/>
+        </div>
+      </template>
     </div>
   </div>
 </template>

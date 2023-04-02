@@ -13,7 +13,7 @@
           </div>
         </div>
         <div>
-          <img src="@/assets/images/serv_mobile.svg" alt="Engineer.png">
+          <img src="@/assets/images/any/serv_mobile.svg" alt="Engineer.png">
         </div>
         <div class="phone-container-right">
           <div v-for="titul in phoneRight">
@@ -166,7 +166,7 @@ export default {
 }
 
 .static-image-background {
-  background-image: url('@/assets/images/bg_services.png');
+  background-image: url('@/assets/images/bg/bg_services.png');
 }
 
 .services-container {

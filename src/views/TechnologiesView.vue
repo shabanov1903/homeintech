@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="static-photo">
-          <img src="@/assets/images/tech_interier.png" alt="Interier.png">
+          <img src="@/assets/images/any/tech_interier.png" alt="Interier.png">
         </div>
       </div>
       <div><i class="pi pi-chevron-down next-page" @click="toNextServicesPart()"></i></div>
@@ -158,7 +158,7 @@ export default {
 }
 
 .static-image-background {
-  background-image: url('@/assets/images/bg_technologies.png');
+  background-image: url('@/assets/images/bg/bg_technologies.png');
   justify-content: space-evenly;
 }
 

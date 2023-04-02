@@ -13,7 +13,6 @@
       <ServicesView id="id-services"></ServicesView>
       <TechnologiesView id="id-technologies"></TechnologiesView>
       <CalculatorView id="id-calculator"></CalculatorView>
-      <ProductionView id="id-production"></ProductionView>
       <ContactsView id="id-contacts"></ContactsView>
     </div>
     <PhoneButton></PhoneButton>
@@ -34,7 +33,6 @@ import CompanyView from './CompanyView.vue';
 import ServicesView from './ServicesView.vue';
 import TechnologiesView from './TechnologiesView.vue';
 import CalculatorView from './CalculatorView.vue';
-import ProductionView from './ProductionView.vue';
 import ContactsView from './ContactsView.vue';
 import PhoneButton from '../components/PhoneButton.vue';
 
@@ -48,7 +46,6 @@ export default {
     TechnologiesView,
     ServicesView,
     CalculatorView,
-    ProductionView,
     ContactsView,
     PhoneButton
   },
@@ -59,7 +56,6 @@ export default {
         { label: 'Услуги', icon: 'pi pi-fw pi-shopping-bag', href: 'id-services' },
         { label: 'Технологии', icon: 'pi pi-fw pi-database', href: 'id-technologies' },
         { label: 'Калькулятор', icon: 'pi pi-fw pi-calculator', href: 'id-calculator' },
-        { label: 'Производство', icon: 'pi pi-fw pi-server', href: 'id-production' },
         { label: 'Контакты', icon: 'pi pi-fw pi-phone', href: 'id-contacts' }
       ],
       desktopSize: 768,
