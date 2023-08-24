@@ -1,4 +1,4 @@
-# homeintech
+# homeintech v.1
 
 ## Project setup
 ```
